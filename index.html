@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>מעקב אימונים והתאוששות</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>מעקב אימונים, שינה והתאוששות</h1>
+    <div id="last-synced">טוען...</div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>התאוששות היום</h2>
+      <div id="recovery-card"></div>
+    </section>
+
+    <section class="card">
+      <h2>שינה אחרונה</h2>
+      <div id="sleep-card"></div>
+    </section>
+
+    <section class="card full">
+      <h2>מגמת התאוששות (30 יום)</h2>
+      <canvas id="recovery-trend-chart" height="90"></canvas>
+    </section>
+
+    <section class="card full">
+      <h2>מגמת שינה (14 לילות)</h2>
+      <canvas id="sleep-trend-chart" height="90"></canvas>
+    </section>
+
+    <section class="card full">
+      <h2>HRV ודופק מנוחה (30 יום)</h2>
+      <canvas id="hrv-rhr-chart" height="90"></canvas>
+    </section>
+
+    <section class="card full">
+      <h2>אימונים אחרונים</h2>
+      <div id="workouts-table"></div>
+    </section>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
