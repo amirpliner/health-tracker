@@ -5,7 +5,7 @@ compatibility_date = "2026-01-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "health-tracker-db"
-database_id = "REPLACE_WITH_DATABASE_ID_FROM_CLOUDFLARE_DASHBOARD"
+database_id = "999286a4-d8c0-4aa8-86ab-e946c348d327"
 
 [vars]
 ALLOWED_ORIGIN = "https://amirpliner.github.io"
