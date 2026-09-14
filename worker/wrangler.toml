@@ -8,7 +8,7 @@ database_name = "health-tracker-db"
 database_id = "REPLACE_WITH_DATABASE_ID_FROM_CLOUDFLARE_DASHBOARD"
 
 [vars]
-ALLOWED_ORIGIN = "https://REPLACE_WITH_YOUR_GITHUB_USERNAME.github.io"
+ALLOWED_ORIGIN = "https://amirpliner.github.io"
 
 # INGEST_SECRET and READ_KEY are set as encrypted secrets in the Cloudflare
 # dashboard (Workers & Pages -> this worker -> Settings -> Variables), not here.
