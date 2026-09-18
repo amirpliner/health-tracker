@@ -1,4 +1,5 @@
 const BAND_COLORS = { red: "#e5484d", yellow: "#f5a623", green: "#30a46c" };
+const BAND_LABELS_HE = { red: "להתמקד בהתאוששות", yellow: "לשמור על קצב", green: "מוכן לאימון" };
 
 export function bandColor(band) {
   return BAND_COLORS[band] || "#999999";
@@ -27,7 +28,7 @@ export function renderRecoveryCard(el, today) {
   el.innerHTML = `
     <div class="recovery-score" style="--band-color:${color}">
       <div class="score-number">${today.score}</div>
-      <div class="score-label">${today.label}</div>
+      <div class="score-label">${BAND_LABELS_HE[today.band] || today.label}</div>
       ${provisional}
     </div>`;
 }

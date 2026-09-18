@@ -262,7 +262,7 @@ function computeScoreForDate(dateStr, allRowsAsc) {
 
   const score = clamp(Math.round(50 + 25 * zHrv + 25 * zRhr), 0, 100);
   const band = score < 34 ? "red" : score < 67 ? "yellow" : "green";
-  const label = band === "red" ? "להתמקד בהתאוששות" : band === "yellow" ? "לשמור על קצב" : "מוכן לאימון";
+  const label = band === "red" ? "prioritize recovery" : band === "yellow" ? "maintain" : "ready to train";
   const state = baseline.length < MIN_DAYS_FOR_FULL_CONFIDENCE ? "provisional" : "full";
 
   return { state, score, band, label, daysOfHistory: baseline.length };

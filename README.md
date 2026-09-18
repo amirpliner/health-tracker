@@ -8,19 +8,20 @@
 2. **Cloudflare Worker** (`worker/`) קולט את הנתונים, שומר ב-D1, ומגיש API לדשבורד.
 3. **הדשבורד** (הקבצים בשורש) הוא עמוד סטטי שמוצג ב-GitHub Pages וקורא מה-API.
 
-## הגדרה (חד-פעמי)
+## הגדרה (בוצע/נעשה חד-פעמי)
 
 ### 1. Cloudflare
-1. הרשמה חינמית ב-https://dash.cloudflare.com
-2. **D1**: Workers & Pages → D1 → Create database (`health-tracker-db`) → בטאב Console הרץ את התוכן של `worker/migrations/0001_init.sql`.
-3. **Worker**: Workers & Pages → Create → Import a repository → חבר את ריפו ה-GitHub הזה, ובחר את `worker/` כתיקיית הפריסה (Root directory).
-4. חבר את מסד ה-D1 ל-Worker (Settings → Bindings → Add D1 binding, `binding = DB`), ועדכן את `database_id` ב-`worker/wrangler.toml` לפי הדשבורד.
-5. הגדר משתני סוד (Settings → Variables → Add secret): `INGEST_SECRET` (מחרוזת אקראית ארוכה) ו-`READ_KEY` (מחרוזת אקראית נוספת).
-6. עדכן את `ALLOWED_ORIGIN` ב-`wrangler.toml` לכתובת ה-GitHub Pages שלך (`https://<username>.github.io`).
+בפועל ה-Worker נפרס ישירות מהעורך המובנה בדשבורד של Cloudflare (Edit code → Deploy), **לא** מ-git integration/GitHub App - חיבור ה-GitHub App נתקל בבעיות פתיחת חלון popup באוטומציה, אז הקוד מודבק/מוקלד ישירות בעורך המובנה בכל פעם שהוא משתנה. `worker/wrangler.toml` נשאר בריפו כתיעוד/גיבוי בלבד (למקרה שירצה מישהו להתקין Node+wrangler בעתיד ולפרוס מהטרמינל).
+
+1. חשבון Cloudflare + D1 database `health-tracker-db` (database_id: `999286a4-d8c0-4aa8-86ab-e946c348d327`) עם הטבלאות מ-`worker/migrations/0001_init.sql` (הורצו ב-Console).
+2. Worker בשם `health-tracker-api`, קוד מ-`worker/src/index.js` מודבק/מוקלד ידנית ב-Edit code → Deploy.
+3. D1 binding: `DB` → `health-tracker-db` (Bindings tab).
+4. משתנים (Settings → Variables and secrets): `INGEST_SECRET` (Secret), `READ_KEY` (Variable), `ALLOWED_ORIGIN=https://amirpliner.github.io` (Variable).
+
+**כדי לעדכן את קוד ה-Worker בעתיד:** לפתוח את ה-Worker בדשבורד → Edit code → למחוק הכל (Cmd+A, Delete) → להדביק/להקליד את התוכן המעודכן של `worker/src/index.js` → Deploy.
 
 ### 2. הדשבורד
-1. עדכן את `js/config.js`: `API_BASE` = כתובת ה-Worker (`https://health-tracker-api.<subdomain>.workers.dev`), `READ_KEY` = הערך שהגדרת ב-Cloudflare.
-2. הפעל GitHub Pages לריפו (Settings → Pages → Deploy from branch → main → /root).
+`js/config.js` כבר מכיל את `API_BASE` (`https://health-tracker-api.yk4f5f7ydh.workers.dev`) ו-`READ_KEY` האמיתיים. GitHub Pages מופעל על הריפו (`amirpliner/health-tracker`, ציבורי) - כתובת: https://amirpliner.github.io/health-tracker/
 
 ### 3. Health Auto Export
 1. התקנה מה-App Store, רכישת Premium/Basic (נדרש לאוטומציית REST API - בדוק מחיר באפליקציה).
